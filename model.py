@@ -49,23 +49,23 @@ class BertForModel(BertPreTrainedModel):
 
         self.num_labels = num_labels 
 
-        self.bert = BertModel(config) # 这个是backbone
+        self.bert = BertModel(config) # backbone
         self.rnn = nn.GRU(input_size=config.hidden_size, hidden_size=config.hidden_size, num_layers=1,
                           dropout=config.hidden_dropout_prob, batch_first=True, bidirectional=True)
         self.dense = nn.Linear(config.hidden_size*2, config.hidden_size)
         self.activation = nn.ReLU()
-        self.dropout = nn.Dropout(config.hidden_dropout_prob) # 以上为编码器pooling层
+        self.dropout = nn.Dropout(config.hidden_dropout_prob) # pooling layer
         self.instance_projector = nn.Sequential(
             nn.Linear(config.hidden_size, config.hidden_size),
             nn.ReLU(),
             nn.Linear(config.hidden_size, 128),
-        ) # instance-level 投影
+        ) # instance-level 
 
         self.cluster_projector = nn.Sequential(
             nn.Linear(config.hidden_size, config.hidden_size),
             nn.ReLU(),
             nn.Linear(config.hidden_size, self.num_labels),
-        ) # class(cluster)-level 投影
+        ) # class(cluster)-level 
 
         self.softmax = nn.Softmax(dim=1)
 
