@@ -84,12 +84,12 @@ class BertForModel(BertPreTrainedModel):
                 pooled_output = self.activation(pooled_output)
                 pooled_output = self.dropout(pooled_output)
 
-                # Class-level 损失函数
+                # Class-level loss
                 logits = self.cluster_projector(pooled_output)
                 ce_loss = nn.CrossEntropyLoss()(logits, label_ids)
 
 
-                # Instance-level 损失函数
+                # Instance-level loss
                 z_i = self.instance_projector(pooled_output)
 
                 label_ids = label_ids.cpu()
@@ -280,19 +280,19 @@ class BertForModel_kt(BertPreTrainedModel):
                           dropout=config.hidden_dropout_prob, batch_first=True, bidirectional=True)
         self.dense = nn.Linear(config.hidden_size*2, config.hidden_size)
         self.activation = nn.ReLU()
-        self.dropout = nn.Dropout(config.hidden_dropout_prob) # 以上为编码器pooling层
+        self.dropout = nn.Dropout(config.hidden_dropout_prob) # pooling layer
 
         self.instance_projector = nn.Sequential(
             nn.Linear(config.hidden_size, config.hidden_size),
             nn.ReLU(),
             nn.Linear(config.hidden_size, 128),
-        ) # instance-level 投影
+        ) # instance-level 
 
         self.cluster_projector = nn.Sequential(
             nn.Linear(config.hidden_size, config.hidden_size),
             nn.ReLU(),
             nn.Linear(config.hidden_size, self.num_labels),
-        ) # class(cluster)-level 投影
+        ) # class(cluster)-level 
 
         self.softmax = nn.Softmax(dim=1)
         self.apply(self.init_bert_weights)
@@ -310,11 +310,11 @@ class BertForModel_kt(BertPreTrainedModel):
                 pooled_output = self.activation(pooled_output)
                 pooled_output = self.dropout(pooled_output)
 
-                # 交叉熵损失函数
+                # Cross Entropy
                 logits = self.cluster_projector(pooled_output)
                 ce_loss = nn.CrossEntropyLoss()(logits, label_ids)
 
-                # 监督对比学习损失
+                # SCL
                 label_ids = label_ids.cpu()
                 labels = onehot_labelling(label_ids, self.num_labels)
                 labels = torch.from_numpy(labels)
