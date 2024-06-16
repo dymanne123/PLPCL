@@ -275,7 +275,7 @@ class BertForModel_kt(BertPreTrainedModel):
         super(BertForModel_kt, self).__init__(config)
         self.num_labels = num_labels
 
-        self.bert = BertModel(config) # 这个是backbone
+        self.bert = BertModel(config) # backbone
         self.rnn = nn.GRU(input_size=config.hidden_size, hidden_size=config.hidden_size, num_layers=1,
                           dropout=config.hidden_dropout_prob, batch_first=True, bidirectional=True)
         self.dense = nn.Linear(config.hidden_size*2, config.hidden_size)
