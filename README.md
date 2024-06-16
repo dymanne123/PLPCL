@@ -1,4 +1,4 @@
-Code implementation for AAAI submission paper: Pseudo Label Enhanced Prototypical Contrastive Learning Framework towards Uniformed Intent Discovery
+Code implementation for ACL ARR submission paper: Pseudo Label Enhanced Prototypical Contrastive Learning Framework towards Uniformed Intent Discovery
 
 Run the experiments by: 
 ```
