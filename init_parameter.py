@@ -87,6 +87,6 @@ def init_model():
 
     parser.add_argument('--seed', type=int, default=0, help="Random seed for initialization.")
 
-    parser.add_argument('--lambda_cluster', type=float, default=0, help="The value of Confidence Thresholds")
+    parser.add_argument('--lambda_cluster', type=float, default=0.99, help="The value of Confidence Thresholds")
     
     return parser
