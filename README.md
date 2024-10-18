@@ -16,6 +16,6 @@ You can change the parameters here.
 
 Some code references the following repositories:
 
--[DKT](https://github.com/myt517/DKT)
+- [DKT](https://github.com/myt517/DKT)
 
--[DeepAligned](https://github.com/thuiar/DeepAligned-Clustering)
+- [DeepAligned](https://github.com/thuiar/DeepAligned-Clustering)
