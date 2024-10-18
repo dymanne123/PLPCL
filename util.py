@@ -133,7 +133,7 @@ def Line_chart():
     model3 = [70.22, 60, 57.33, 59.11, 54.67]
     '''
     # sns.set(style="darkgrid")
-    plt.plot(epoch1, model1, linewidth=2, c="#41719c", marker=".", ms=9, label="DKT")
+    plt.plot(epoch1, model1, linewidth=2, c="#41719c", marker=".", ms=9, label="PLPCL")
     plt.plot(epoch1, model2, linewidth=2, c="#70ad47", marker=".", ms=9, label="DeepAligned")
     plt.plot(epoch1, model3, linewidth=2, c="#ed7d31", marker=".", ms=9, label="PTK-means")
     plt.yticks([20, 40, 60, 80, 100], fontsize=15)
