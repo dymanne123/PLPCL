@@ -1,5 +1,5 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from model import *
 from init_parameter import *
 from dataloader import *
@@ -442,7 +442,7 @@ class ModelManager:
         #values = list(results.values())
         keys=["text","label","label_true","label_wrong","if know"] 
         
-        file_name = 'wrong_results_DKT_0.7_banking_withcc.csv'
+        file_name = 'wrong_results_PLPCL_0.7_banking.csv'
         results_path = os.path.join(args.save_results_path, file_name)
         
         if not os.path.exists(results_path):
@@ -471,7 +471,7 @@ class ModelManager:
         #values = list(results.values())
         keys=["loss","loss_cluster","loss_instance"] 
         
-        file_name = 'DKT_loss.csv'
+        file_name = 'PLPCL_loss.csv'
         results_path = os.path.join(args.save_results_path, file_name)
         
         if not os.path.exists(results_path):
@@ -761,8 +761,8 @@ class ModelManager:
             self.save_model(args)
 
     def save_model(self, args):
-        root_path = "DKT_models"
-        pretrain_dir = os.path.join(root_path, "DKT_0.8")
+        root_path = "PLPCL_models"
+        pretrain_dir = os.path.join(root_path, "PLPCL_0.7")
         if not os.path.exists(pretrain_dir):
             os.makedirs(pretrain_dir)
         self.save_model = self.model.module if hasattr(self.model, 'module') else self.model
